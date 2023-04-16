@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import StyleTab from "./screens/StyleTab";
+import TrustIconIconito from "./screens/TrustIconIconito";
+import { AppProvider } from "@shopify/polaris";
+// import "@shopify/polaris/build/esm/styles.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <AppProvider>
+          {/* <StyleTab /> */}
+          <Routes>
+            <Route path="/" element={<StyleTab />} />
+          </Routes>
+        </AppProvider>
+      </Router>
+    </>
   );
 }
 
