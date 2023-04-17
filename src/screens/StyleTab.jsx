@@ -24,7 +24,7 @@ import {
   QuestionMarkMajor,
 } from "@shopify/polaris-icons";
 import translations from "@shopify/polaris/locales/en.json";
-import iconito from "../assets/icon.svg";
+import iconito from "../assets/iconito.png";
 import TrustIconIconito from "./TrustIconIconito";
 
 const StyleTab = () => {
@@ -61,7 +61,7 @@ const StyleTab = () => {
   const logo = {
     width: 124,
     topBarSource:
-      "https://res-console.cloudinary.com/dbtqvhete/thumbnails/v1/image/upload/v1681665114/aHN1Zm1zc256cXVtdHk4dXF1MTA=/grid_landscape",
+      "https://res.cloudinary.com/dbtqvhete/image/upload/v1681665114/hsufmssnzqumty8uqu10.png",
 
     url: "#",
     accessibilityLabel: "asdasdas",
@@ -93,6 +93,9 @@ const StyleTab = () => {
       ]}
     />
   );
+  const imageIconito = () => {
+    return <img src={iconito} />;
+  };
 
   const searchFieldMarkup = (
     <TopBar.SearchField
@@ -145,6 +148,7 @@ const StyleTab = () => {
             url: "#",
             label: "Home",
             icon: HomeMinor,
+            excludePaths: ["#"],
           },
           {
             url: "#",
@@ -217,8 +221,8 @@ const StyleTab = () => {
         items={[
           {
             url: "#",
-            label: "Trust badges & icons - Iconito",
-            icon: iconito,
+            label: "Trust badges & icons - Ico..",
+            icon: imageIconito,
             //   shouldResizeIcon: true,
           },
         ]}
