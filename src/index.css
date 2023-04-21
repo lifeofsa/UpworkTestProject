@@ -24,9 +24,10 @@ code {
   padding-left: 45px !important;
 }
 .textfield {
-  width: 100px !important;
+  width: 120px !important;
+
   padding-bottom: 10px;
-  border-radius: 100px;
+  border-radius: 100px !important;
   /* padding-bottom: 40px; */
 }
 .Polaris-Button--sizeLarge {
@@ -48,4 +49,19 @@ code {
   border-radius: 50%;
   display: inline-block;
   outline: #000000 solid 1px;
+}
+.Polaris-TextField__Spinner {
+  visibility: visible !important;
+}
+.Polaris-Button--primary {
+  background: #2463bc !important;
+  width: 100px !important;
+  border-radius: 7px !important;
+  padding: 12px !important;
+}
+.Polaris-Button--destructive {
+  background: rgb(220, 42, 42) !important;
+  width: 100px !important;
+  border-radius: 7px !important;
+  padding: 12px !important;
 }

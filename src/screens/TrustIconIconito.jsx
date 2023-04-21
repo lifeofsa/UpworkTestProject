@@ -3,35 +3,53 @@ import {
   Page,
   Layout,
   LegacyCard,
-  Icon,
-  AlphaStack,
   LegacyStack,
   Text,
   Button,
-  Heading,
-  Box,
-  Divider,
   RangeSlider,
   TextField,
-  ColorPicker,
+  Select,
+  PageActions,
+  Toast,
+  ButtonGroup,
 } from "@shopify/polaris";
 import {
   CircleAlertMajor,
   ChecklistAlternateMajor,
   MobileChevronMajor,
+  BuyButtonHorizontalLayoutMajor,
 } from "@shopify/polaris-icons";
 import trustbadge from "../assets/iconito.png";
-import { border } from "@shopify/polaris-tokens";
+
 const TrustIconIconito = () => {
-  const [rangeValue, setRangeValue] = useState(50);
+  const [iconRangeValue, setIconRangeValue] = useState(50);
+  const [blockRangeValue, setBlockRangeValue] = useState(0);
+  const [spaceBetweenRangeValue, setspaceBetweenRangeValue] = useState(0);
   const [colorBackground, setColorBackground] = useState("#ffffff");
   const [colorTitle, setColorTitle] = useState("#000000");
   const [colorIcon, setColorIcon] = useState("#000000");
   const [colorSubtitle, setColorSubtitle] = useState("#000000");
-  const handleRangeSliderChange = useCallback(
-    (value) => setRangeValue(value),
-    []
-  );
+  const [titleFont, setTitleFont] = useState("14");
+  const [subtitleFont, setSubtitleFont] = useState("12");
+  const [Goesup, setGoesup] = useState("0");
+  const [GoesDown, setGoesDown] = useState("0");
+  const [RegularFont, setRegularFont] = useState();
+  const [BoldFont, setBoldFont] = useState();
+  const [active, setActive] = useState(false);
+
+  const toggleActive = useCallback(() => setActive((active) => !active), []);
+
+  const toastMarkup = active ? (
+    <Toast
+      content="Form Submitted"
+      action={{
+        onAction: () => {},
+      }}
+      duration={10000}
+      onDismiss={toggleActive}
+    />
+  ) : null;
+
   const backgroundColor = (
     <div style={{ paddingTop: "5px" }}>
       <span
@@ -94,7 +112,11 @@ const TrustIconIconito = () => {
                       </Button>
                     </div>
                     <div style={{ color: "#0a83ed" }}>
-                      <Button monochrome outline>
+                      <Button
+                        icon={BuyButtonHorizontalLayoutMajor}
+                        monochrome
+                        outline
+                      >
                         <Text fontWeight="bold">Integrations</Text>
                       </Button>
                     </div>
@@ -104,8 +126,6 @@ const TrustIconIconito = () => {
                       </Button>
                     </div>
                   </LegacyStack>
-
-                  {/* <Text fontWeight="bold">Iconito - Trust Badges & Icons</Text> */}
                 </LegacyStack>
               </div>
             </LegacyCard>
@@ -113,14 +133,7 @@ const TrustIconIconito = () => {
         </Layout>
       </Page>
       <div className="container">
-        <Page
-          // breadcrumbs={{
-          //   content: "",
-          //   url: "#",
-          // }}
-          // title="Icons Blocks"
-          fullWidth
-        >
+        <Page fullWidth>
           <Layout>
             <Layout.Section secondary>
               <LegacyStack spacing="tight">
@@ -148,18 +161,20 @@ const TrustIconIconito = () => {
                 <br />
                 <LegacyStack>
                   <LegacyStack.Item fill>
-                    <RangeSlider
-                      value={rangeValue}
-                      onChange={handleRangeSliderChange}
-                      min={0}
-                      max={360}
-                    />
+                    <div style={{ width: "80%" }}>
+                      <RangeSlider
+                        value={iconRangeValue}
+                        onChange={setIconRangeValue}
+                        min={0}
+                        max={360}
+                      />
+                    </div>
                   </LegacyStack.Item>
                   <LegacyStack.Item>
                     <div className="textfield">
                       <TextField
-                        value={rangeValue}
-                        onChange={handleRangeSliderChange}
+                        value={iconRangeValue}
+                        onChange={setIconRangeValue}
                         suffix="px"
                         autoComplete="on"
                         type="number"
@@ -185,7 +200,6 @@ const TrustIconIconito = () => {
                       <div style={{ width: "190px" }}>
                         <TextField
                           prefix={backgroundColor}
-                          // connectedLeft={backgroundColor}
                           type="text"
                           value={colorBackground}
                           onChange={setColorBackground}
@@ -198,7 +212,6 @@ const TrustIconIconito = () => {
                       <div style={{ width: "190px" }}>
                         <TextField
                           prefix={TitleColor}
-                          // connectedLeft={backgroundColor}
                           type="text"
                           value={colorTitle}
                           onChange={setColorTitle}
@@ -216,7 +229,6 @@ const TrustIconIconito = () => {
                         <div style={{ width: "190px" }}>
                           <TextField
                             prefix={IconColor}
-                            // connectedLeft={backgroundColor}
                             type="text"
                             value={colorIcon}
                             onChange={setColorIcon}
@@ -229,7 +241,6 @@ const TrustIconIconito = () => {
                         <div style={{ width: "190px" }}>
                           <TextField
                             prefix={SubtitleColor}
-                            // connectedLeft={backgroundColor}
                             type="text"
                             value={colorSubtitle}
                             onChange={setColorSubtitle}
@@ -240,6 +251,162 @@ const TrustIconIconito = () => {
                   </div>
                 </div>
               </LegacyCard>
+              <LegacyCard sectioned>
+                <Text variant="headingLg" as="h4">
+                  Typography
+                </Text>
+                <br />
+
+                <div style={{ padding: "5px" }}>
+                  <LegacyStack distribution="equalSpacing">
+                    <LegacyStack>
+                      <div>
+                        <TextField
+                          label="Title Font Size"
+                          type="number"
+                          value={titleFont}
+                          onChange={setTitleFont}
+                          suffix="px"
+                        />
+                      </div>
+                    </LegacyStack>
+                    <LegacyStack>
+                      <div style={{ width: "230px" }}>
+                        <Select
+                          label="Title Font Style"
+                          options={["Regular", "Bold"]}
+                          value={RegularFont}
+                          onChange={setRegularFont}
+                        />
+                      </div>
+                    </LegacyStack>
+                  </LegacyStack>
+                  <div style={{ marginTop: "45px" }}>
+                    <LegacyStack distribution="equalSpacing">
+                      <LegacyStack>
+                        <div>
+                          <TextField
+                            label="Subtitle Font Size"
+                            type="number"
+                            value={subtitleFont}
+                            onChange={setSubtitleFont}
+                            suffix="px"
+                          />
+                        </div>
+                      </LegacyStack>
+                      <LegacyStack>
+                        <div style={{ width: "230px" }}>
+                          <Select
+                            label="Subtitle Font Style"
+                            options={["Bold", "Regular"]}
+                            value={BoldFont}
+                            onChange={setBoldFont}
+                          />
+                        </div>
+                      </LegacyStack>
+                    </LegacyStack>
+                  </div>
+                </div>
+              </LegacyCard>
+              <LegacyCard sectioned>
+                <Text variant="headingLg" as="h4">
+                  Spacing
+                </Text>
+                <br />
+                <div style={{ padding: "5px" }}>
+                  <Text fontWeight="bold">Block Size</Text>
+                  <br />
+                  <LegacyStack>
+                    <LegacyStack.Item fill>
+                      <div style={{ width: "80%" }}>
+                        <RangeSlider
+                          value={blockRangeValue}
+                          onChange={setBlockRangeValue}
+                          min={0}
+                          max={360}
+                        />
+                      </div>
+                    </LegacyStack.Item>
+                    <LegacyStack.Item>
+                      <div className="textfield">
+                        <TextField
+                          value={blockRangeValue}
+                          onChange={setBlockRangeValue}
+                          suffix="px"
+                          autoComplete="on"
+                          type="number"
+                        />
+                      </div>
+                    </LegacyStack.Item>
+                  </LegacyStack>
+                  <div style={{}}>
+                    <Text variant="headingLg" as="h4">
+                      Border Location
+                    </Text>
+                    <br />
+                    <LegacyStack distribution="equalSpacing">
+                      <LegacyStack>
+                        <div>
+                          <TextField
+                            label="Goes up"
+                            type="number"
+                            value={Goesup}
+                            onChange={setGoesup}
+                            suffix="px"
+                          />
+                        </div>
+                      </LegacyStack>
+                      <LegacyStack>
+                        <div style={{ width: "230px" }}>
+                          <TextField
+                            label="Goes down"
+                            type="number"
+                            value={GoesDown}
+                            suffix="px"
+                            onChange={setGoesDown}
+                          />
+                        </div>
+                      </LegacyStack>
+                    </LegacyStack>
+                    <div style={{ marginTop: "20px" }}>
+                      <Text fontWeight="bold">Block Size</Text>
+                      <br />
+                      <LegacyStack>
+                        <LegacyStack.Item fill>
+                          <div style={{ width: "80%" }}>
+                            <RangeSlider
+                              value={spaceBetweenRangeValue}
+                              onChange={setspaceBetweenRangeValue}
+                              min={0}
+                              max={360}
+                            />
+                          </div>
+                        </LegacyStack.Item>
+                        <LegacyStack.Item>
+                          <div className="textfield">
+                            <TextField
+                              value={spaceBetweenRangeValue}
+                              onChange={setspaceBetweenRangeValue}
+                              suffix="px"
+                              autoComplete="on"
+                              type="number"
+                            />
+                          </div>
+                        </LegacyStack.Item>
+                      </LegacyStack>
+                    </div>
+                  </div>
+                </div>
+              </LegacyCard>
+              <div style={{ marginTop: "15px" }}>
+                <ButtonGroup>
+                  <Button onClick={toggleActive} primary>
+                    Save
+                  </Button>
+                  <Button destructive>Delete</Button>
+                </ButtonGroup>
+                {toastMarkup}
+              </div>
             </Layout.Section>
             <Layout.Section secondary>
               <LegacyCard title="Tags" sectioned>

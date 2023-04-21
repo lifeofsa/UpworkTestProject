@@ -21,12 +21,12 @@ import {
   OnlineStoreMinor,
   ChevronRightMinor,
   ArrowLeftMinor,
-  QuestionMarkMajor,
+  NotificationMajor,
 } from "@shopify/polaris-icons";
 import translations from "@shopify/polaris/locales/en.json";
 import iconito from "../assets/iconito.png";
 import TrustIconIconito from "./TrustIconIconito";
-
+import royalApp from "../assets/Royalapp.png";
 const StyleTab = () => {
   // TopBar
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -77,9 +77,8 @@ const StyleTab = () => {
           items: [{ content: "Community forums" }],
         },
       ]}
-      name="Dharma"
-      detail="Jaded Pixel"
-      initials="D"
+      name="Royal Apps"
+      avatar={royalApp}
       open={isUserMenuOpen}
       onToggle={toggleIsUserMenuOpen}
     />
@@ -110,7 +109,7 @@ const StyleTab = () => {
     <TopBar.Menu
       activatorContent={
         <span>
-          <Icon source={QuestionMarkMajor} />
+          <Icon source={NotificationMajor} />
           <Text as="span" visuallyHidden>
             Secondary menu
           </Text>
@@ -119,11 +118,6 @@ const StyleTab = () => {
       open={isSecondaryMenuOpen}
       onOpen={toggleIsSecondaryMenuOpen}
       onClose={toggleIsSecondaryMenuOpen}
-      actions={[
-        {
-          items: [{ content: "Community forums" }],
-        },
-      ]}
     />
   );
 
